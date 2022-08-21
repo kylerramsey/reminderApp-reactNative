@@ -9,7 +9,7 @@ const Reminder = (props) => {
                 <View style={styles.circle}></View>
                 <Text style={styles.itemText}>{props.text}</Text>
             </View>
-            <Text>test</Text>
+            <View style={styles.square} />
         </View>
     )
 }
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#55BCF6',
         opacity: 0.4,
         borderRadius: 5,
-        marginRight: 15,
     },
     itemText: {
         maxWidth: '80%',

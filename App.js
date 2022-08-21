@@ -1,19 +1,18 @@
 import React, {useState} from "react";
-import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard } from "react-native";
 import Reminder from "./components/Reminder";
-import RiseUpMenu from "./components/RiseUpMenu";
 
 export default function App() {
     const [reminder, setReminder] = useState()
     const [reminderItems, setReminderItems] = useState([])
-    const [time, setTime] = useState()
-
+   
     const AddReminder = () => {
         Keyboard.dismiss()
         setReminderItems([...reminderItems, reminder])
+        console.log(reminder)
+        console.log(reminderItems)
         setReminder('')
-        setTime('')
+
     }
 
     const completeReminder = (index) => {
@@ -45,8 +44,7 @@ export default function App() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.createReminderWrapper}>
                 <TextInput style={styles.input} value={reminder} placeholder={'Create a reminder for yourself'} onChangeText={text => setReminder(text)}/>
-                <TextInput style={styles.input2} value={time} placeholder={'Date / Time'} onChangeText={time => setReminder(time)}/>
-                    <RiseUpMenu />
+                {/* <TextInput style={styles.input2} text={time} placeholder={'Date / Time'}/> */}
                 <TouchableOpacity onPress={() => AddReminder()}>
                     <View style={styles.addWrapper}>
                         <Text style={styles.addText}>+</Text>
