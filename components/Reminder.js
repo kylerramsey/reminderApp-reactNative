@@ -1,16 +1,15 @@
 import react from "react";
-import { View, Text, StyleSheet, Touchable } from 'react-native'
-import { TouchableOpacity } from "react-native-web";
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const Reminder = (props) => {
 
     return (
         <View style={styles.item}>
             <View style={styles.itemLeft}>
-                <View style={styles.square}></View>
+                <View style={styles.circle}></View>
                 <Text style={styles.itemText}>{props.text}</Text>
             </View>
-            <View style={styles.circle} />
+            <Text>test</Text>
         </View>
     )
 }
@@ -48,6 +47,7 @@ const styles = StyleSheet.create({
         borderColor: '#55BCF6',
         borderWidth: 2,
         borderRadius: 5,
+        marginRight: 15,
     },
 })
 

@@ -2,15 +2,18 @@ import React, {useState} from "react";
 import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard } from "react-native";
 import Reminder from "./components/Reminder";
+import RiseUpMenu from "./components/RiseUpMenu";
 
 export default function App() {
     const [reminder, setReminder] = useState()
     const [reminderItems, setReminderItems] = useState([])
+    const [time, setTime] = useState()
 
-    const handleAddReminder = () => {
+    const AddReminder = () => {
         Keyboard.dismiss()
         setReminderItems([...reminderItems, reminder])
         setReminder('')
+        setTime('')
     }
 
     const completeReminder = (index) => {
@@ -22,7 +25,7 @@ export default function App() {
     return (
         <View style={styles.container}>
             <View style={styles.reminderWrapper}>
-                <Text style={styles.sectionTitle}>Your Reminders</Text>
+                <Text style={styles.sectionTitle}>Remind me to...</Text>
                 <View style={styles.items}>
                     {/* This is where the reminders go */}
                     {
@@ -42,13 +45,16 @@ export default function App() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.createReminderWrapper}>
                 <TextInput style={styles.input} value={reminder} placeholder={'Create a reminder for yourself'} onChangeText={text => setReminder(text)}/>
-                <TouchableOpacity onPress={() => handleAddReminder()}>
+                <TextInput style={styles.input2} value={time} placeholder={'Date / Time'} onChangeText={time => setReminder(time)}/>
+                    <RiseUpMenu />
+                <TouchableOpacity onPress={() => AddReminder()}>
                     <View style={styles.addWrapper}>
                         <Text style={styles.addText}>+</Text>
                     </View>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
 
+            
         </View>
     );
 }
@@ -56,7 +62,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#E8EAED",
+        backgroundColor: "#f0f8ff",
     },
 
     reminderWrapper: {
@@ -65,7 +71,8 @@ const styles = StyleSheet.create({
     },
     sectionTitle: {
         fontSize: 24,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        textAlign: 'center'
     },
     items: {
         marginTop: 30,
@@ -87,6 +94,15 @@ const styles = StyleSheet.create({
         borderColor: '#C0C0C0',
         borderWidth: 1,
     },
+    input2: {
+        paddingVertical: 15,
+        width: 50,
+        paddingHorizontal: 15,
+        backgroundColor: 'white',
+        borderRadius: 60,
+        borderColor: '#C0C0C0',
+        borderWidth: 1,
+    },
     addWrapper: {
         width: 60,
         height: 60,
@@ -96,6 +112,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: '#C0C0C0',
         borderWidth: 1,
+    },
+    dateWrapper: {
+        width: 60,
+        height: 60,
+        backgroundColor: 'white',
+        borderRadius: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: '#C0C0C0',
+        borderWidth: 1,
+        margin: 20,
     },
     addText: {},
 });
